@@ -15,14 +15,23 @@ import {Occupant} from './Occupant';
       <div class="panel-body" style="text-align:center;">
         <span *ngFor="let room of rooms"
           [class.selected]="room === selectedRoom"
-          (click)="onSelect(room)">
-          <button type="button" class="btn btn-lg btn-default">
-          <img src="../img/music-note-5.png" style="width:50px;height:50px;"/>
-          <br>
-          {{ room.roomName }}
-          <br>
-          <h3 class="occupied" *ngIf="room.occupied">Occupied</h3>
-          <h3 class="vacant" *ngIf="!room.occupied">Vacant</h3>
+          (click)="onSelect(room);">
+          <button type="button" class="btn btn-lg btn-default" *ngIf="room !== selectedRoom">
+            <img src="../img/music-note-5.png">
+            <br>
+            {{ room.roomName }}
+            <br>
+            <h3 class="occupied" *ngIf="room.occupied">Occupied</h3>
+            <h3 class="vacant" *ngIf="!room.occupied">Vacant</h3>
+          </button>
+
+          <button type="button" class="btn btn-lg btn-warning" *ngIf="room === selectedRoom">
+            <img src="../img/music-note-5.png">
+            <br>
+            {{ room.roomName }}
+            <br>
+            <h3 class="occupied" *ngIf="room.occupied">Occupied</h3>
+            <h3 class="vacant" *ngIf="!room.occupied">Vacant</h3>
           </button>
         </span>
       </div>
@@ -38,19 +47,21 @@ import {Occupant} from './Occupant';
             </div>
             <div class="panel-body">
               <div *ngIf="!selectedRoom.occupied">
+                <form (ngSubmit)="onSubmit()" #roomForm="ngForm">
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" class="form-control" id="name"
                          required
-                         [(ngModel)]="model.name" name="name">
+                         [(ngModel)]="model.name" name="name" #name="ngModel">
                 </div>
                 <div class="form-group">
                   <label for="email">Drexel Email</label>
                   <input type="text"  class="form-control" id="email"
                           required
-                         [(ngModel)]="model.email" name="email">
+                         [(ngModel)]="model.email" name="email" #email="ngModel">
                 </div>
-                <button type="button" class="btn btn-success" (click)="checkIn()">Check-In</button>
+                <button type="submit" class="btn btn-success" [disabled]="!roomForm.form.valid">Check-In</button>
+                </form>
               </div>
               <div class="roomInfo" *ngIf="selectedRoom.occupied">
                 <h3>Currently Reserved To:</h3>
@@ -120,6 +131,7 @@ export class AppComponent  { name = 'Angular';
 
 onSubmit(){
   this.submitted = true;
+  this.checkIn();
 }
   checkIn():void{
     this.model.checkIn();
