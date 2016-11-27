@@ -1,0 +1,41 @@
+.vacant{
+  color: green;
+}
+
+.occupied{
+  color: red;
+}
+
+#roomSelect{
+  float:none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.roomInfo{
+  float:none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table{
+  border: 1px solid;
+  height:100%;
+}
+tr{
+  display:block;
+}
+
+th, td{
+  width:300px;
+}
+.tableBody{
+  display:block;
+  height:250px;
+  width:500px;
+  overflow:scroll;
+}
+
+#title{
+  text-align:center;
+}
