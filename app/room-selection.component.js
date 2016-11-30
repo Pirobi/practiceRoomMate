@@ -21,35 +21,19 @@ var RoomSelection = (function () {
         var _this = this;
         this.service.getRooms().then(function (rooms) { return _this.rooms = rooms; });
     };
-    RoomSelection.prototype.ngOnInit = function () {
-        this.getRooms();
-    };
     RoomSelection.prototype.getSelectedRoom = function () {
         return this.service.getSelectedRoom();
+    };
+    RoomSelection.prototype.ngOnInit = function () {
+        this.getRooms();
     };
     RoomSelection.prototype.onSelect = function (room) {
         this.service.setSelectedRoom(room);
         this.model = new Occupant_1.Occupant();
     };
-    RoomSelection.prototype.onSubmit = function () {
-        this.submitted = true;
-        this.checkIn();
-    };
-    RoomSelection.prototype.checkIn = function () {
-        this.model.checkIn();
-        this.service.getSelectedRoom().occupied = true;
-        this.service.getSelectedRoom().addOccupant(this.model);
-        this.model = new Occupant_1.Occupant();
-    };
-    RoomSelection.prototype.checkOut = function () {
-        this.getSelectedRoom().occupied = false;
-        this.getSelectedRoom().getOccupant().checkOut();
-        this.model = new Occupant_1.Occupant();
-    };
     RoomSelection = __decorate([
         core_1.Component({
             selector: 'room-selection',
-            providers: [RoomService_service_1.RoomService],
             templateUrl: 'room-selection.component.html' }), 
         __metadata('design:paramtypes', [RoomService_service_1.RoomService])
     ], RoomSelection);

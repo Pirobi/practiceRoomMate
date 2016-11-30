@@ -5,12 +5,11 @@ import {Occupant} from './Occupant';
 
 @Component({
   selector: 'room-form',
-  providers: [RoomService],
   templateUrl: 'room-form.component.html'})
   export class RoomForm{
     submitted = false;
       model = new Occupant();
-      constructor(private service:RoomService){}
+      constructor(private service: RoomService){}
         getSelectedRoom():Room{
           return this.service.getSelectedRoom();
         }

@@ -38,7 +38,6 @@ var RoomForm = (function () {
     RoomForm = __decorate([
         core_1.Component({
             selector: 'room-form',
-            providers: [RoomService_service_1.RoomService],
             templateUrl: 'room-form.component.html' }), 
         __metadata('design:paramtypes', [RoomService_service_1.RoomService])
     ], RoomForm);
