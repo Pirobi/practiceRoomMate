@@ -12,7 +12,14 @@ var core_1 = require('@angular/core');
 var RoomList_1 = require('./RoomList');
 var RoomService = (function () {
     function RoomService() {
+        this.roomInfo = { selectedRoom: null };
     }
+    RoomService.prototype.getSelectedRoom = function () {
+        return this.roomInfo.selectedRoom;
+    };
+    RoomService.prototype.setSelectedRoom = function (r) {
+        this.roomInfo.selectedRoom = r;
+    };
     RoomService.prototype.getRooms = function () {
         return Promise.resolve(RoomList_1.ROOMS);
     };
