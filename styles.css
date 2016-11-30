@@ -33,7 +33,8 @@ th, td{
   display:block;
   height:250px;
   width:500px;
-  overflow:scroll;
+  overflow-y:scroll;
+  overflow-x:none;
 }
 
 #title{
