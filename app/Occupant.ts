@@ -13,7 +13,7 @@ export class Occupant{
     var h = d.getHours() > 12 ? d.getHours()-12 : d.getHours();
     var m = d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
     var am = d.getHours() > 12 ? "pm" : "am";
-    return h + ":" + d.getMinutes() + am;
+    return h + ":" + m + am;
   }
 
   checkOut():void{
