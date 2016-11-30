@@ -6,6 +6,7 @@ var Occupant = (function () {
     Occupant.prototype.getCurrentTime = function () {
         var d = new Date();
         var h = d.getHours() > 12 ? d.getHours() - 12 : d.getHours();
+        var m = d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
         var am = d.getHours() > 12 ? "pm" : "am";
         return h + ":" + d.getMinutes() + am;
     };
