@@ -2,18 +2,14 @@ import { Injectable } from '@angular/core';
 import { Room } from './room';
 import { ROOMS } from './RoomList';
 
-export interface RoomInfo{
-  selectedRoom:Room;
-}
-
 @Injectable()
 export class RoomService {
-  roomInfo: RoomInfo = {selectedRoom : null};
+  selectedRoom: Room;
   getSelectedRoom():Room{
-    return this.roomInfo.selectedRoom;
+    return this.selectedRoom;
   }
   setSelectedRoom(r : Room):void{
-    this.roomInfo.selectedRoom = r;
+    this.selectedRoom = r;
   }
   getRooms(): Promise<Room[]> {
     return Promise.resolve(ROOMS);

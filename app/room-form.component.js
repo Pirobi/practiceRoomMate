@@ -11,49 +11,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var RoomService_service_1 = require('./RoomService.service');
 var Occupant_1 = require('./Occupant');
-var RoomSelection = (function () {
-    function RoomSelection(service) {
+var RoomForm = (function () {
+    function RoomForm(service) {
         this.service = service;
         this.submitted = false;
         this.model = new Occupant_1.Occupant();
     }
-    RoomSelection.prototype.getRooms = function () {
-        var _this = this;
-        this.service.getRooms().then(function (rooms) { return _this.rooms = rooms; });
-    };
-    RoomSelection.prototype.ngOnInit = function () {
-        this.getRooms();
-    };
-    RoomSelection.prototype.getSelectedRoom = function () {
+    RoomForm.prototype.getSelectedRoom = function () {
         return this.service.getSelectedRoom();
     };
-    RoomSelection.prototype.onSelect = function (room) {
-        this.service.setSelectedRoom(room);
-        this.model = new Occupant_1.Occupant();
-    };
-    RoomSelection.prototype.onSubmit = function () {
+    RoomForm.prototype.onSubmit = function () {
         this.submitted = true;
         this.checkIn();
     };
-    RoomSelection.prototype.checkIn = function () {
+    RoomForm.prototype.checkIn = function () {
         this.model.checkIn();
-        this.service.getSelectedRoom().occupied = true;
-        this.service.getSelectedRoom().addOccupant(this.model);
+        this.getSelectedRoom().occupied = true;
+        this.getSelectedRoom().addOccupant(this.model);
         this.model = new Occupant_1.Occupant();
     };
-    RoomSelection.prototype.checkOut = function () {
+    RoomForm.prototype.checkOut = function () {
         this.getSelectedRoom().occupied = false;
         this.getSelectedRoom().getOccupant().checkOut();
         this.model = new Occupant_1.Occupant();
     };
-    RoomSelection = __decorate([
+    RoomForm = __decorate([
         core_1.Component({
-            selector: 'room-selection',
+            selector: 'room-form',
             providers: [RoomService_service_1.RoomService],
-            templateUrl: 'room-selection.component.html' }), 
+            templateUrl: 'room-form.component.html' }), 
         __metadata('design:paramtypes', [RoomService_service_1.RoomService])
-    ], RoomSelection);
-    return RoomSelection;
+    ], RoomForm);
+    return RoomForm;
 }());
-exports.RoomSelection = RoomSelection;
-//# sourceMappingURL=room-selection.component.js.map
+exports.RoomForm = RoomForm;
+//# sourceMappingURL=room-form.component.js.map

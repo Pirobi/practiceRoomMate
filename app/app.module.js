@@ -13,13 +13,14 @@ var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
 var room_selection_component_1 = require('./room-selection.component');
+var room_form_component_1 = require('./room-form.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-            declarations: [app_component_1.AppComponent, room_selection_component_1.RoomSelection],
+            declarations: [app_component_1.AppComponent, room_selection_component_1.RoomSelection, room_form_component_1.RoomForm],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

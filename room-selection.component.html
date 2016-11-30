@@ -7,9 +7,9 @@
       </div>
       <div class="panel-body" style="text-align:center;">
         <span *ngFor="let room of rooms"
-          [class.selected]="room === selectedRoom"
+          [class.selected]="room === getSelectedRoom()"
           (click)="onSelect(room);">
-          <button type="button" class="btn btn-lg btn-default" *ngIf="room !== selectedRoom">
+          <button type="button" class="btn btn-lg btn-default" *ngIf="room !== getSelectedRoom()">
             <img src="../img/music-note-5.png">
             <br>
             {{ room.roomName }}
@@ -18,7 +18,7 @@
             <h3 class="vacant" *ngIf="!room.occupied">Vacant</h3>
           </button>
 
-          <button type="button" class="btn btn-lg btn-warning" *ngIf="room === selectedRoom">
+          <button type="button" class="btn btn-lg btn-warning" *ngIf="room === getSelectedRoom()">
             <img src="../img/music-note-5.png">
             <br>
             {{ room.roomName }}
@@ -30,16 +30,16 @@
       </div>
     </div>
   </div>
-  <div class="page-header" *ngIf="selectedRoom">
+  <div class="page-header" *ngIf="getSelectedRoom()">
     <table class="roomInfo">
       <tr>
         <td>
           <div id="roomPanel" class="panel panel-success">
             <div class="panel-heading">
-              <h3 class="panel-title">{{selectedRoom.roomName}} Info</h3>
+              <h3 class="panel-title">{{getSelectedRoom().roomName}} Info</h3>
             </div>
             <div class="panel-body">
-              <div *ngIf="!selectedRoom.occupied">
+              <div *ngIf="!getSelectedRoom().occupied">
                 <form (ngSubmit)="onSubmit()" #roomForm="ngForm">
                 <div class="form-group">
                   <label for="name">Name</label>
@@ -56,11 +56,11 @@
                 <button type="submit" class="btn btn-success" [disabled]="!roomForm.form.valid">Check-In</button>
                 </form>
               </div>
-              <div class="roomInfo" *ngIf="selectedRoom.occupied">
+              <div class="roomInfo" *ngIf="getSelectedRoom().occupied">
                 <h3>Currently Reserved To:</h3>
-                <h4>Name: {{selectedRoom.getOccupant().name}}</h4>
+                <h4>Name: {{getSelectedRoom().getOccupant().name}}</h4>
                 <br>
-                <h4>Checked In At: {{selectedRoom.getOccupant().timeIn}}</h4>
+                <h4>Checked In At: {{getSelectedRoom().getOccupant().timeIn}}</h4>
                 <button type="button" class="btn btn-danger" (click)="checkOut()">Check-Out</button>
               </div>
             </div>
@@ -77,7 +77,7 @@
                 </tr>
               </thead>
               <tbody class="tableBody">
-                <tr *ngFor="let o of selectedRoom.history">
+                <tr *ngFor="let o of getSelectedRoom().history">
                   <td>{{o.name}}</td>
                   <td>{{o.timeIn}}</td>
                   <td>{{o.timeOut}}</td>
@@ -89,7 +89,7 @@
       </tr>
     </table>
   </div>
-  <div class="roomInfo col-sm-5" *ngIf="!selectedRoom">
+  <div class="roomInfo col-sm-5" *ngIf="!getSelectedRoom()">
     <div class="panel panel-warning">
       <div class="panel-heading">
         <h3 class="panel-title">Select a Room</h3>

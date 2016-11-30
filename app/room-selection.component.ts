@@ -1,5 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { RoomService, RoomInfo } from './RoomService.service';
+import { RoomService } from './RoomService.service';
 import {Room} from './room';
 import {Occupant} from './Occupant';
 
@@ -9,10 +9,9 @@ import {Occupant} from './Occupant';
   templateUrl: 'room-selection.component.html'})
   export class RoomSelection{
     rooms:Room[];
-    roomInfo: RoomInfo;
     submitted = false;
       model = new Occupant();
-      constructor(private service:RoomService){this.roomInfo = this.service.roomInfo;}
+      constructor(private service:RoomService){}
       getRooms(): void {
       this.service.getRooms().then(rooms => this.rooms = rooms);
     }
@@ -22,11 +21,11 @@ import {Occupant} from './Occupant';
     }
 
     getSelectedRoom():Room{
-      return this.roomInfo.selectedRoom;
+      return this.service.getSelectedRoom();
     }
 
     onSelect(room : Room): void {
-      this.roomInfo.selected = room;
+      this.service.setSelectedRoom(room);
       this.model = new Occupant();
     }
 
@@ -37,13 +36,13 @@ import {Occupant} from './Occupant';
     checkIn():void{
       this.model.checkIn();
       this.service.getSelectedRoom().occupied = true;
-      this.selectedRoom.addOccupant(this.model);
+      this.service.getSelectedRoom().addOccupant(this.model);
       this.model = new Occupant();
     }
 
     checkOut():void{
-      this.selectedRoom.occupied = false;
-      this.selectedRoom.getOccupant().checkOut();
+      this.getSelectedRoom().occupied = false;
+      this.getSelectedRoom().getOccupant().checkOut();
       this.model = new Occupant();
     }
   }

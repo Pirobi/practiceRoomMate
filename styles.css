@@ -26,11 +26,8 @@ tr{
   display:block;
 }
 
-td{
-  width:300px;
-}
-th{
-  width:300px;
+th, td{
+  width: 300px;
 }
 .tableBody{
   display:block;
